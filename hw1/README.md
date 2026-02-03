@@ -1,6 +1,6 @@
 ## Setup
 
-You can run this code on your own machine or on Google Colab. 
+You can run this code on your own machine or on Google Colab.
 
 1. **Local option:** If you choose to run locally, you will need to install MuJoCo and some Python packages; see [installation.md](installation.md) for instructions.
 2. **Colab:** The first few sections of the notebook will install all required dependencies. You can try out the Colab option by clicking the badge below:
@@ -51,7 +51,13 @@ python cs285/scripts/run_hw1.py \
     --do_dagger --expert_data cs285/expert_data/expert_data_Ant-v4.pkl \
 	--video_log_freq -1
 ```
-
+```
+python cs285/scripts/run_hw1.py \
+    --expert_policy_file cs285/policies/experts/Hopper.pkl \
+    --env_name Hopper-v4 --exp_name dagger_ant --n_iter 10 \
+    --do_dagger --expert_data cs285/expert_data/expert_data_Hopper-v4.pkl \
+    --video_log_freq -1
+```
 Make sure to also try another environment.
 See the homework PDF for more details on what else you need to run.
 

@@ -35,11 +35,11 @@ class ReplayBuffer(object):
             convert_listofrollouts(paths, concat_rew))
 
         if self.obs is None:
-            self.obs = observations[-self.max_size:]
-            self.acs = actions[-self.max_size:]
-            self.rews = rewards[-self.max_size:]
-            self.next_obs = next_observations[-self.max_size:]
-            self.terminals = terminals[-self.max_size:]
+            self.obs = np.array(observations, dtype=np.float32)[-self.max_size:]
+            self.acs = np.array(actions, dtype=np.float32)[-self.max_size:]
+            self.rews = np.array(rewards, dtype=np.float32)[-self.max_size:]
+            self.next_obs = np.array(next_observations, dtype=np.float32)[-self.max_size:]
+            self.terminals = np.array(terminals, dtype=np.float32)[-self.max_size:]
         else:
             self.obs = np.concatenate([self.obs, observations])[-self.max_size:]
             self.acs = np.concatenate([self.acs, actions])[-self.max_size:]
