@@ -21,3 +21,7 @@ There are TODOs in these files:
 - `cs285/infrastructure/utils.py`
 
 See the [Assignment PDF](hw2.pdf) for more info.
+
+```
+tensorboard --logdir data
+```

@@ -10,8 +10,9 @@ You need to open a new terminal for that path change to take place (to be able t
 
 2. Create a conda environment that will contain Python 3:
 ```
-conda create -n cs285 python=3.10
+conda create -n cs285 python=3.10 'setuptools<82.0.0'
 ```
+Note: https://github.com/pypa/setuptools/issues/5174 Explains that the error arises because setuptools version 82.0.0 removed the pkg_resources library, which is required by this version of tensorboard.
 
 3. Activate the environment (do this every time you open a new terminal and want to run code):
 ```
@@ -32,7 +33,7 @@ This conda environment requires activating it every time you open a new terminal
 
 
 
-## Troubleshooting 
+## Troubleshooting
 
 You may encounter the following GLFW errors if running on machine without a display:
 
