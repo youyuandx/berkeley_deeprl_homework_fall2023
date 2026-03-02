@@ -1,5 +1,6 @@
 mujoco==2.2.0
-gym[classic_control,mujoco,atari,accept-rom-license]==0.25.2
+# Compared with the default requirements.txt, there is no `atari` build available on ARM64 Linux Docker on Apple Silicon
+gym[classic_control,mujoco,accept-rom-license]==0.25.2
 numpy<2
 tensorboard==2.10.0
 tensorboardX==2.5.1
