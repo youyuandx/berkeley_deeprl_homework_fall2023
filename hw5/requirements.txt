@@ -1,5 +1,7 @@
 mujoco==2.2.0
 gym[classic_control,mujoco,atari]==0.25.2
+# networkx==3.4.2
+numpy<2
 tensorboard==2.10.0
 tensorboardX==2.5.1
 matplotlib==3.5.3

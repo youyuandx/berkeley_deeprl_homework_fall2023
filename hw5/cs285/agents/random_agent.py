@@ -8,9 +8,9 @@ class RandomAgent:
         self.num_actions = num_actions
 
     def get_action(self, *args, **kwargs):
-        # TODO(student): Return a random action
-        return ...
-    
+        # DONE(student): Return a random action
+        return np.random.randint(self.num_actions)
+
     def update(self, *args, **kwargs):
         # Update is a no-op for the random agent
         return {}

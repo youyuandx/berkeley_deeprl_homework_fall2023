@@ -1,2 +1,78 @@
 1) See hw1 if you'd like to see installation instructions. You do NOT have to redo them.
 2) See the PDF for the rest of the instructions.
+
+python cs285/scripts/run_hw5_explore.py \
+-cfg experiments/exploration/pointmass_easy_random.yaml \
+--dataset_dir datasets/
+
+python cs285/scripts/run_hw5_explore.py \
+-cfg experiments/exploration/pointmass_medium_random.yaml \
+--dataset_dir datasets/
+
+python cs285/scripts/run_hw5_explore.py \
+-cfg experiments/exploration/pointmass_hard_random.yaml \
+--dataset_dir datasets/
+
+python cs285/scripts/run_hw5_explore.py \
+-cfg experiments/exploration/pointmass_easy_rnd.yaml \
+--dataset_dir datasets/
+
+python cs285/scripts/run_hw5_explore.py \
+-cfg experiments/exploration/pointmass_medium_rnd.yaml \
+--dataset_dir datasets/
+
+python cs285/scripts/run_hw5_explore.py \
+-cfg experiments/exploration/pointmass_hard_rnd.yaml \
+--dataset_dir datasets/
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_easy_dqn.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_easy_cql.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_medium_dqn.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_medium_cql.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_medium_cql_alpha5.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_medium_cql_alpha10.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_hard_dqn.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_hard_cql.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_hard_awac.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_medium_iql.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_offline.py \
+-cfg experiments/offline/pointmass_hard_iql.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_finetune.py \
+-cfg experiments/finetuning/pointmass_hard_cql_finetune.yaml \
+--dataset_dir datasets
+
+python ./cs285/scripts/run_hw5_finetune.py \
+-cfg experiments/finetuning/pointmass_easy_cql_finetune.yaml \
+--dataset_dir datasets

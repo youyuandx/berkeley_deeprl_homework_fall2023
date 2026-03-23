@@ -30,23 +30,27 @@ class AWACAgent(DQNAgent):
         next_observations: torch.Tensor,
         dones: torch.Tensor,
     ):
+        (batch_size,) = rewards.shape
         with torch.no_grad():
-            # TODO(student): compute the actor distribution, then use it to compute E[Q(s, a)]
-            next_qa_values = ...
+            # DONE(student): compute the actor distribution, then use it to compute E[Q(s, a)]
+            next_qa_values = self.target_critic(next_observations)
 
             # Use the actor to compute a critic backup
+            next_action_dist = self.actor(next_observations)
+            next_actions = next_action_dist.sample().unsqueeze(1)
+            next_qs = next_qa_values.gather(1, next_actions).squeeze(1) * torch.logical_not(dones)
 
-            next_qs = ...
+            # DONE(student): Compute the TD target
+            target_values = rewards + self.discount * next_qs
 
-            # TODO(student): Compute the TD target
-            target_values = ...
-
-        
-        # TODO(student): Compute Q(s, a) and loss similar to DQN
-        q_values = ...
+        # DONE(student): Compute Q(s, a) and loss similar to DQN
+        qa_values = self.critic(observations)
+        if actions.dim() == 1:
+            actions = actions.unsqueeze(1)
+        q_values = qa_values.gather(1, actions).squeeze(1)
         assert q_values.shape == target_values.shape
 
-        loss = ...
+        loss = self.critic_loss(q_values, target_values)
 
         return (
             loss,
@@ -67,12 +71,14 @@ class AWACAgent(DQNAgent):
         actions: torch.Tensor,
         action_dist: Optional[torch.distributions.Categorical] = None,
     ):
-        # TODO(student): compute the advantage of the actions compared to E[Q(s, a)]
-        qa_values = ...
-        q_values = ...
-        values = ...
-
-        advantages = ...
+        # DONE(student): compute the advantage of the actions compared to E[Q(s, a)]
+        qa_values = self.critic(observations)
+        if actions.dim() == 1:
+            actions = actions.unsqueeze(1)
+        q_values = qa_values.gather(1, actions).squeeze(1)
+        assert action_dist is not None
+        values = torch.sum(action_dist.probs * qa_values, dim=1)
+        advantages = q_values - values
         return advantages
 
     def update_actor(
@@ -80,8 +86,13 @@ class AWACAgent(DQNAgent):
         observations: torch.Tensor,
         actions: torch.Tensor,
     ):
-        # TODO(student): update the actor using AWAC
-        loss = ...
+        # DONE(student): update the actor using AWAC
+        action_dist = self.actor(observations)
+        weights = torch.exp(
+            self.compute_advantage(observations, actions, action_dist)
+            / self.temperature
+        ).detach()
+        loss = -torch.mean(action_dist.log_prob(actions) * weights)
 
         self.actor_optimizer.zero_grad()
         loss.backward()

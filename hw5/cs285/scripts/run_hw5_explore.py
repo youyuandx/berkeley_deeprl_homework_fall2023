@@ -175,7 +175,7 @@ def run_training_loop(config: dict, logger: Logger, args: argparse.Namespace):
     with open(dataset_file, "wb") as f:
         pickle.dump(replay_buffer, f)
         print("Saved dataset to", dataset_file)
-    
+
     # Render final heatmap
     fig = visualize(env_pointmass, agent, replay_buffer.observations[:config["total_steps"]])
     fig.suptitle("State coverage")
@@ -216,6 +216,7 @@ def main():
 
     config = make_config(args.config_file)
     logger = make_logger(logdir_prefix, config)
+    print(config)
 
     os.makedirs(args.dataset_dir, exist_ok=True)
     print(banner.format(env=config["env_name"], alg=config["agent"], dataset_dir=args.dataset_dir))
