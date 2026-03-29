@@ -6,7 +6,7 @@
     //     "context": ".."
     // },
     "features": {
-        "ghcr.io/devcontainers/features/common-utils:1": {
+        "ghcr.io/devcontainers/features/common-utils:latest": {
             "configureZshAsDefaultShell": true
         }
     },
